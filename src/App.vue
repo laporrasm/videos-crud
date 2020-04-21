@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+<div id="app">
+  <Header></Header>
+  <Container>
     <router-view/>
-  </div>
+  </Container>
+</div>
 </template>
 
+<script>
+import Header from './components/Header.vue';
+import Container from './components/Container.vue';
+
+export default {
+  components: {
+    Header,
+    Container,
+  },
+};
+</script>
+
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  min-height: 100vh;
 }
 
-#nav {
-  padding: 30px;
+body {
+  margin: 0;
+  font-family: 'Nunito';
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+*, *::after, *::before { box-sizing: border-box; }
+
+input, textarea {
+  outline: none;
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
