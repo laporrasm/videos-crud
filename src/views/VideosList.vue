@@ -65,12 +65,12 @@ export default {
 .video-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
+  gap: 2em;
   place-content: center;
   padding: 2em;
-  background-color: #3aafa9;
 
   h2 {
+    margin: 0;
     grid-column: 1 / -1;
   }
 }

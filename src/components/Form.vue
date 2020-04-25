@@ -57,17 +57,23 @@ export default {
 .form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 1em;
 
   &__input, &__textarea {
     padding: .5em .75em;
-    font-family: inherit;
+    font-family: 'Work Sans';
     font-size: 1.1rem;
     resize: none;
-    border: .1em solid #f0f0f0;
+    background-color: #feffff;
+    border: .085em solid #EDEDF0;
+    border-radius: .5em;
     grid-column: 1 / -1;
+  }
 
-    &:focus { border-color: #00C1AA; }
+  &__textarea {
+    grid-row: 3 / 6;
+    resize: none;
   }
 
   Button { justify-self: end; }

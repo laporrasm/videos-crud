@@ -25,20 +25,18 @@ export default {
 <style lang="scss" scoped>
 .btn {
   padding: .75em 1em;
-  font-family: inherit;
-  font-size: 1.1rem;
-  border: none;
-  outline: none;
+  font-family: 'Work Sans';
+  font-size: 1rem;
+  color: #3b3b3b;
+  background-color: white;
+  border: .085em solid #EDEDF0;
+  border-radius: .25em;
   cursor: pointer;
 
   &--primary {
-    background-color: #3aafa9;
-    color: #def2f1;
-  }
-
-  &--secondary {
-    background-color: #def2f1;
-    color: #3aafa9;
+    background-color: #2a52be;
+    border-color: #2a52be;
+    color: white;
   }
 }
 </style>

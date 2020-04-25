@@ -20,36 +20,30 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-
-#app {
-  min-height: 100vh;
-}
-
-body {
-  margin: 0;
-  font-family: 'Nunito';
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-family: 'Oswald', sans-serif;
-}
-
-h2 {
-  font-size: 2.5rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Work+Sans&display=swap');
 
 *, *::after, *::before { box-sizing: border-box; }
 
-input, textarea {
-  outline: none;
-  font-family: inherit;
+#app { min-height: 100vh; }
+
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  background-color: #f5f5f7;
 }
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+}
+
+h1 { font-size: 3rem; }
+
+h2 { font-size: 2.25rem; }
+
+h3 { font-size: 1.5rem; }
+
+input, textarea { font-family: inherit; }
 
 a {
   color: inherit;

@@ -42,10 +42,5 @@ export default {
   max-width: 900px;
   width: 95%;
   margin: 10em auto;
-
-  h2 {
-    margin-bottom: .75em;
-    border-bottom: .05em solid #d8d8d8;
-  }
 }
 </style>

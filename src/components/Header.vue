@@ -2,12 +2,14 @@
 <header class="header">
   <h1 class="header__logo">
     <router-link to="/">
-      <i class="far fa-play-circle"></i>
-      VideoTV
+      VidTV
     </router-link>
   </h1>
   <Button class="btn--primary">
-    <router-link to="/add">Add video</router-link>
+    <router-link to="/add">
+      <i class="fas fa-plus"></i>
+      Add video
+    </router-link>
   </Button>
 </header>
 </template>
@@ -28,16 +30,15 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1em;
-  background-color: #17252a;
+  background-color: #2D3037;
   text-align: center;
-  color: #2b7a78;
+  color: #ABACAF;
 
   &__logo {
     margin: 0;
     width: max-content;
   }
-
-  Button { border-radius: .5em; }
 }
 </style>

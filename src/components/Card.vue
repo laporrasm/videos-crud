@@ -3,28 +3,32 @@
   <video
     class="video-card__video"
     :src="videoSource"
-    poster="https://i.ytimg.com/vi/9Sjaeql8oBc/maxresdefault.jpg"
-    controls
     @ended="updateViews"
   />
-  <h3 class="video-card__title">{{videoTitle}}</h3>
-  <span class="video-card__views-count">{{videoViews}} views</span>
-  <p class="video-card__description">{{videoDescription}}</p>
-  <Button class="btn--secondary" @btnClick="toDetailsView">See details</Button>
-  <div>
-    <span @click="toEditForm"><i class="fas fa-pencil-alt"></i></span>
-    <span @click="emitDeleteRequest"><i class="fas fa-times"></i></span>
+  <div class="video-card__text">
+    <h3 class="video-card__title">{{videoTitle}}</h3>
+    <span class="video-card__views-count">{{videoViews}} views</span>
+    <p class="video-card__description">{{videoDescription}}</p>
+  </div>
+  <!-- <Button class="btn--secondary" @btnClick="toDetailsView">See details</Button> -->
+  <div class="video-card__cta-container">
+    <span @click="toEditForm">
+      <i class="fas fa-pencil-alt"></i>
+    </span>
+    <span @click="emitDeleteRequest">
+      <i class="fas fa-trash-alt"></i>
+    </span>
   </div>
 </div>
 </template>
 
 <script>
-import Button from './Button.vue';
+// import Button from './Button.vue';
 
 export default {
   name: 'Card',
   components: {
-    Button,
+    // Button,
   },
   props: {
     videoSource: String,
@@ -59,20 +63,29 @@ export default {
 <style lang="scss" scoped>
 .video-card {
   position: relative;
-  padding: .75em;
   background-color: #feffff;
+  border: .085em solid #EDEDF0;
+  border-radius: .5em;
 
-  &__video { width: 100%; }
+  &__video {
+    width: 100%;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
 
-  &__title, &__description {
-    margin: 0;
+  &__text {
+    padding: 1em;
   }
 
   &__description {
+    margin: 0;
     color: #3b3b3b;
+    text-align: justify;
   }
 
   &__views-count {
+    display: inline-block;
+    margin: .5em 0;
     font-size: .75em;
     color: #b8b8b8;
   }
@@ -83,26 +96,22 @@ export default {
     margin-top: .5em;
   }
 
-  > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+  &__cta-container {
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    background-color: #f7f7f7;
+    border-top: inherit;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 
     span {
-      width: 25px;
-      height: 25px;
-      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: .25em;
+      text-align: center;
+      color: #c7c7c7;
       cursor: pointer;
-      background-color: rgb(59, 59, 59);
-      color: white;
     }
   }
 }
