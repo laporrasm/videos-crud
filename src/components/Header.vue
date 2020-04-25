@@ -2,7 +2,7 @@
 <header class="header">
   <h1 class="header__logo">
     <router-link to="/">
-      VidTV
+      VideoTV
     </router-link>
   </h1>
   <Button class="btn--primary">
@@ -32,9 +32,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  background-color: #2D3037;
+  background-color: #2c2c2c;
   text-align: center;
-  color: #ABACAF;
+  color: white;
 
   &__logo {
     margin: 0;

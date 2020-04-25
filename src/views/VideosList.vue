@@ -1,6 +1,6 @@
 <template>
 <div class="video-list">
-  <h2>Your Videos</h2>
+  <h2>All videos</h2>
   <Card
     v-for="video in videos"
     v-bind:key="video.id"

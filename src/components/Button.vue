@@ -33,6 +33,8 @@ export default {
   border-radius: .25em;
   cursor: pointer;
 
+  &:hover { opacity: .8; }
+
   &--primary {
     background-color: #2a52be;
     border-color: #2a52be;

@@ -10,7 +10,6 @@
     <span class="video-card__views-count">{{videoViews}} views</span>
     <p class="video-card__description">{{videoDescription}}</p>
   </div>
-  <!-- <Button class="btn--secondary" @btnClick="toDetailsView">See details</Button> -->
   <div class="video-card__cta-container">
     <span @click="toEditForm">
       <i class="fas fa-pencil-alt"></i>
@@ -23,13 +22,8 @@
 </template>
 
 <script>
-// import Button from './Button.vue';
-
 export default {
   name: 'Card',
-  components: {
-    // Button,
-  },
   props: {
     videoSource: String,
     videoTitle: String,
@@ -63,6 +57,8 @@ export default {
 <style lang="scss" scoped>
 .video-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background-color: #feffff;
   border: .085em solid #EDEDF0;
   border-radius: .5em;
@@ -75,6 +71,7 @@ export default {
 
   &__text {
     padding: 1em;
+    flex-grow: 1;
   }
 
   &__description {
@@ -112,6 +109,14 @@ export default {
       text-align: center;
       color: #c7c7c7;
       cursor: pointer;
+
+      &:first-child:hover {
+        color: #FDC02E;
+      }
+
+      &:last-child:hover {
+        color: #FF402E;
+      }
     }
   }
 }

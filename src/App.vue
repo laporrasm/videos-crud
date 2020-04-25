@@ -37,7 +37,7 @@ h1, h2, h3 {
   font-family: 'Work Sans', sans-serif;
 }
 
-h1 { font-size: 3rem; }
+h1 { font-size: 2.75rem; }
 
 h2 { font-size: 2.25rem; }
 

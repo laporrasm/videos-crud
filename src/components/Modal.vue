@@ -49,8 +49,8 @@ export default {
   background-color: rgba(0, 0, 0, .25);
 
   &__inner {
-    max-width: 95%;
-    width: 500px;
+    max-width: 600px;
+    width: 95%;
     padding: 1em;
     background-color: white;
     text-align: center;
@@ -66,12 +66,6 @@ export default {
     border-bottom: .075em solid #f0f0f0;
 
     span { cursor: pointer; }
-  }
-
-  &__body {
-    width: 60%;
-    margin: 1em auto;
-    font-size: 1.1rem;
   }
 
   &__instructions {

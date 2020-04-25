@@ -59,9 +59,10 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 1em;
+  margin: 1em auto;
 
   &__input, &__textarea {
-    padding: .5em .75em;
+    padding: .75em;
     font-family: 'Work Sans';
     font-size: 1.1rem;
     resize: none;
