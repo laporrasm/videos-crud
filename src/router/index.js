@@ -7,9 +7,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    // name: 'Home',
-    // component: Home,
-    redirect: '/videos',
+    name: 'Home',
+    component: () => import('../views/Home.vue'),
   },
   {
     path: '/add',
@@ -20,11 +19,6 @@ const routes = [
     path: '/edit/:id',
     name: 'EditForm',
     component: () => import('../views/EditForm.vue'),
-  },
-  {
-    path: '/videos',
-    name: 'VideosList',
-    component: () => import('../views/VideosList.vue'),
   },
   {
     path: '/videos/:id',

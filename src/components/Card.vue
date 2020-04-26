@@ -2,17 +2,21 @@
 <div class="video-card">
   <video
     class="video-card__video"
-    :src="videoSource"
-    @ended="updateViews"
+    :src="video.link"
+    @ended="addView"
+    :controls="controlsActive"
   />
   <div class="video-card__text">
-    <h3 class="video-card__title">{{videoTitle}}</h3>
-    <span class="video-card__views-count">{{videoViews}} views</span>
-    <p class="video-card__description">{{videoDescription}}</p>
+    <h3 class="video-card__title">{{video.title}}</h3>
+    <span class="video-card__views-count">{{video.views}} views</span>
+    <p class="video-card__description">{{video.description}}</p>
   </div>
   <div class="video-card__cta-container">
     <span @click="toEditForm">
       <i class="fas fa-pencil-alt"></i>
+    </span>
+    <span @click="toDetailsView">
+      <i class="fas fa-play"></i>
     </span>
     <span @click="emitDeleteRequest">
       <i class="fas fa-trash-alt"></i>
@@ -22,34 +26,46 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Card',
+  data() {
+    return {
+      video: {},
+    };
+  },
   props: {
-    videoSource: String,
-    videoTitle: String,
-    videoViews: Number,
-    videoDescription: String,
     videoId: Number,
+    controlsActive: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    ...mapGetters([
+      'getVideoById',
+    ]),
   },
   methods: {
-    toDetailsView() { this.$router.push(`/videos/${this.videoId}`); },
-    toEditForm() { this.$router.push(`/edit/${this.videoId}`); },
-    emitDeleteRequest() { this.$emit('deleteRequest', this.videoId); },
-    updateViews() {
-      fetch(`http://localhost:3000/videos/${this.videoId}`, {
-        method: 'PATCH',
-        body: JSON.stringify({
-          views: this.videoViews + 1,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-        .then((res) => res.json())
-        .then((obj) => {
-          this.videoViews = obj.views;
-        });
+    ...mapActions([
+      'updateViews',
+    ]),
+    addView() {
+      this.updateViews(this.video.views + 1);
     },
+    toDetailsView() {
+      this.$router.push(`/videos/${this.videoId}`);
+    },
+    toEditForm() {
+      this.$router.push(`/edit/${this.videoId}`);
+    },
+    emitDeleteRequest() {
+      this.$emit('deleteRequest', this.videoId);
+    },
+  },
+  created() {
+    this.video = this.getVideoById(this.videoId);
   },
 };
 </script>
@@ -114,6 +130,10 @@ export default {
         color: #FDC02E;
       }
 
+      &:nth-child(2):hover {
+        color: #2a52be;
+      }
+
       &:last-child:hover {
         color: #FF402E;
       }
@@ -122,9 +142,15 @@ export default {
 }
 
 .video-card--lrg {
-  max-width: 900px;
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto;
 
-  Button, div {
+  .video-card__text {
+    padding: 2em;
+  }
+
+  .video-card__cta-container {
     display: none;
   }
 }

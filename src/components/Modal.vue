@@ -64,8 +64,12 @@ export default {
     padding-bottom: .5em;
     color: #cccccc;
     border-bottom: .075em solid #f0f0f0;
+  }
 
-    span { cursor: pointer; }
+  &__close { cursor: pointer; }
+
+  &__body {
+    margin: 1em 4em;
   }
 
   &__instructions {
@@ -79,9 +83,8 @@ export default {
     gap: .5em;
   }
 
-  Button {
-    margin-right: 1em;
-    border-radius: .5em;
+  Button + Button {
+    margin-left: 1em;
   }
 }
 </style>

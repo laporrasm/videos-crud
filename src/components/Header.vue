@@ -5,7 +5,7 @@
       VideoTV
     </router-link>
   </h1>
-  <Button class="btn--primary">
+  <Button v-if="videos.length" class="btn--primary">
     <router-link to="/add">
       <i class="fas fa-plus"></i>
       Add video
@@ -15,12 +15,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Button from './Button.vue';
 
 export default {
   name: 'Header',
   components: {
     Button,
+  },
+  computed: {
+    ...mapState([
+      'videos',
+    ]),
   },
 };
 </script>

@@ -1,20 +1,30 @@
 <template>
 <div id="app">
   <Header></Header>
-  <Container>
-    <router-view/>
-  </Container>
+  <router-view class="view"/>
 </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import Header from './components/Header.vue';
-import Container from './components/Container.vue';
 
 export default {
   components: {
     Header,
-    Container,
+  },
+  computed: {
+    ...mapState([
+      'videos',
+    ]),
+  },
+  methods: {
+    ...mapActions([
+      'getVideos',
+    ]),
+  },
+  created() {
+    this.getVideos();
   },
 };
 </script>
@@ -24,7 +34,11 @@ export default {
 
 *, *::after, *::before { box-sizing: border-box; }
 
-#app { min-height: 100vh; }
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 body {
   margin: 0;
@@ -49,4 +63,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.view { flex-grow: 1; }
 </style>

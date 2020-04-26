@@ -4,11 +4,8 @@
   <Card
     v-for="video in videos"
     v-bind:key="video.id"
-    :video-title="video.title"
-    :video-views="video.views"
-    :video-description="video.description"
-    :video-source="video.link"
     :video-id="video.id"
+    :controls-active="false"
     v-on:deleteRequest="handleDeleteRequest"
   />
   <Modal
@@ -21,6 +18,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import Card from '../components/Card.vue';
 import Modal from '../components/Modal.vue';
 
@@ -32,31 +30,28 @@ export default {
   },
   data() {
     return {
-      videos: [],
       flagModal: false,
       requestedDelete: -1,
     };
   },
+  computed: {
+    ...mapState([
+      'videos',
+    ]),
+  },
   methods: {
+    ...mapActions([
+      'getVideos',
+      'deleteVideo',
+    ]),
     handleModal(userDecision) {
       this.flagModal = false;
-      if (userDecision) this.deleteCard();
-    },
-    deleteCard() {
-      fetch(`http://localhost:3000/videos/${this.requestedDelete}`, {
-        method: 'DELETE',
-      });
-      this.videos = this.videos.filter((element) => element.id !== this.requestedDelete);
+      if (userDecision) this.deleteVideo(this.requestedDelete);
     },
     handleDeleteRequest(id) {
       this.flagModal = true;
       this.requestedDelete = id;
     },
-  },
-  mounted() {
-    fetch('http://localhost:3000/videos')
-      .then((res) => res.json())
-      .then((videos) => this.videos.push(...videos));
   },
 };
 </script>
@@ -69,9 +64,6 @@ export default {
   place-content: center;
   padding: 2em;
 
-  h2 {
-    margin: 0;
-    grid-column: 1 / -1;
-  }
+  h2 { grid-column: 1 / -1; }
 }
 </style>

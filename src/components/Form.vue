@@ -1,8 +1,25 @@
 <template>
 <form class="form" @submit.prevent="emitValues">
-  <input class="form__input" type="text" placeholder="Title" v-model="title" required/>
-  <input class="form__input" type="url" placeholder="Video URL" v-model="url" required/>
-  <textarea class="form__textarea" placeholder="Description" v-model="description" required>
+  <input
+    class="form__input"
+    type="text"
+    placeholder="Title"
+    v-model="videoObject.title"
+    required
+  />
+  <input
+    class="form__input"
+    type="url"
+    placeholder="Video URL"
+    v-model="videoObject.link"
+    required
+  />
+  <textarea
+    class="form__textarea"
+    placeholder="Description"
+    v-model="videoObject.description"
+    required
+  >
   </textarea>
   <Button btnType="submit" btnClass="btn--primary">Confirm</Button>
   <router-link to="/">
@@ -12,6 +29,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Button from './Button.vue';
 
 export default {
@@ -21,33 +39,29 @@ export default {
   },
   data() {
     return {
-      title: '',
-      url: '',
-      description: '',
+      videoObject: {
+        title: '',
+        description: '',
+        link: '',
+      },
     };
   },
   props: {
-    // Used to fetch the original values of a video we want to edit
     videoId: Number,
+  },
+  computed: {
+    ...mapGetters([
+      'getVideoById',
+    ]),
   },
   methods: {
     emitValues() {
-      this.$emit('handleEmit', {
-        title: this.title,
-        url: this.url,
-        description: this.description,
-      });
+      this.$emit('emission', this.videoObject);
     },
   },
-  mounted() {
-    if (!Number.isNaN(this.videoId)) {
-      fetch(`http://localhost:3000/videos/${this.videoId}`)
-        .then((res) => res.json())
-        .then((video) => {
-          this.title = video.title;
-          this.url = video.link;
-          this.description = video.description;
-        });
+  created() {
+    if (this.videoId !== -1) {
+      this.videoObject = this.getVideoById(this.videoId);
     }
   },
 };

@@ -1,11 +1,12 @@
 <template>
   <div class="add-form">
     <h2>Add video</h2>
-    <Form v-on:handleEmit="addVideo"/>
+    <Form :video-id="-1" v-on:emission="handleEmit"/>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Form from '../components/Form.vue';
 
 export default {
@@ -14,21 +15,12 @@ export default {
     Form,
   },
   methods: {
-    addVideo(videoObject) {
-      fetch('http://localhost:3000/videos', {
-        method: 'POST',
-        body: JSON.stringify({
-          title: videoObject.title,
-          link: videoObject.url,
-          description: videoObject.description,
-          views: 0,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-        .then((res) => res.json())
-        .then(() => this.$router.push('/videos'));
+    ...mapActions([
+      'addVideo',
+    ]),
+    handleEmit(videoObject) {
+      this.addVideo(videoObject);
+      this.$router.replace({ name: 'VideosList' });
     },
   },
 };

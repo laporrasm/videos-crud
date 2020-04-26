@@ -1,14 +1,10 @@
 <template>
 <div class="video-details">
-  <h2>{{video.title}}</h2>
   <div>
     <Card
       class="video-card--lrg"
-      :video-title="video.title"
-      :video-views="video.views"
-      :video-description="video.description"
-      :video-source="video.link"
-      :video-id="video.id"
+      :video-id="videoId"
+      :controlsActive="true"
     ></Card>
   </div>
 </div>
@@ -24,15 +20,11 @@ export default {
   },
   data() {
     return {
-      video: {},
+      videoId: -1,
     };
   },
-  mounted() {
-    fetch(`http://localhost:3000/videos/${this.$route.params.id}`)
-      .then((res) => res.json())
-      .then((video) => {
-        this.video = video;
-      });
+  created() {
+    this.videoId = parseInt(this.$route.params.id, 10);
   },
 };
 </script>
